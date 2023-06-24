@@ -47,7 +47,7 @@ function get(url) {
     if (localStorage.getItem('userData')) {
         headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
     }
-    return request('GET',url,headerData );
+    return request('GET', url, headerData);
 }
 
 function post(url, body) {
@@ -62,17 +62,25 @@ function post(url, body) {
 
 function put(url, body) {
     const headerData = {};
-    headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
+
+    if (localStorage.getItem('userData')) {
+        headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
+    }
     return request(methodsEnum.PUT, url, headerData, body);
 }
 function del(url) {
     const headerData = {};
-    headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
+
+    if (localStorage.getItem('userData')) {
+        headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
+    }
     return request('DELETE', url, headerData);
 }
 function patch(url, body) {
     const headerData = {};
-    headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token;
+    if (localStorage.getItem('userData')) {
+        headerData['X-Authorization'] = JSON.parse(localStorage.getItem('userData')).token; 
+    }
     return request('PATCH', url, headerData, body);
 }
 
