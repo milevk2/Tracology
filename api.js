@@ -84,6 +84,12 @@ function patch(url, body) {
     return request('PATCH', url, headerData, body);
 }
 
+function hello(){
+
+
+}
+
+
 export {
 
     get, post, put, del, patch, pathsEnum, methodsEnum
