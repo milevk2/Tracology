@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "lit-html": "^2.7.4",
+    "page": "^1.11.6"
+  }
+}

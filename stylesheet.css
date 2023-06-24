@@ -1,0 +1,93 @@
+#main {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    height: 1000px;
+    /* background-image: url("ginina_mogila.jpg"); */
+    background-color: whitesmoke;
+}
+
+#main p {
+
+    width: 75%;
+
+
+}
+
+#main h2 {
+
+    border-bottom: 1px solid;
+    border-color: teal;
+    width: 75%;
+    padding-bottom: 3px;
+}
+
+.wrapper {
+
+    margin-left: 25px;
+}
+
+.projectInfo {
+
+    margin: 2%;
+
+
+}
+
+
+.menu {
+
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(22, 86, 105);
+}
+
+
+
+.banner {
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: rgb(22, 86, 105);
+    color: grey;
+    width: 100%;
+    padding-left: 5%;
+
+}
+
+.centered {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+
+    flex-direction: column;
+
+}
+
+
+.one {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.links{
+
+    text-decoration: none;
+    transition: 300ms;
+
+}
+
+.links:hover{
+
+transform: scale(1.01);
+border-color: gray;
+
+}
