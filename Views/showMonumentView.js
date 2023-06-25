@@ -1,12 +1,12 @@
 import { render, html } from "../node_modules/lit-html/lit-html.js"
-import { getMonument } from "./user_actions.js";
+import { getMonument } from "../user_actions.js";
 
 
 async function showMonumentView(context) {
 
-    const firebase_id = context.params.id;
+    let firebase_id = context.params.id;
     const monument = await getMonument(firebase_id);
-    render(monumentsTemplate(monument), document.querySelector('#main'));  
+    render(monumentsTemplate(monument), document.querySelector('#main'));
 }
 
 
@@ -98,7 +98,7 @@ const monumentsTemplate = (monument) => html`<div class="container">
               
               <div class="row  bbl m-1 p-1">
                   <div class="col-lg-4  d-flex align-items-center"><strong>Изображения</strong></div>
-                  <div class="col-lg-8"><img src="${monument.img}" class="img-thumbnail" alt="Не е налично" height="150" width="150"></div>
+                  <div class="col-lg-8"><img src="${monument.img ? monument.img : "../Images/alt.jpg"}" class="img-thumbnail" height="150" width="150"></div>
               </div> 
 
               <div class="row  bbl m-1 p-1 align-items-center" >
@@ -123,4 +123,4 @@ const monumentsTemplate = (monument) => html`<div class="container">
 
 `
 
-export {showMonumentView}
+export { showMonumentView }

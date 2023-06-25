@@ -1,27 +1,47 @@
-import { pathsEnum, methodsEnum as methods} from "./api.js";
+import { pathsEnum, methodsEnum as methods } from "./api.js";
+import page from "./node_modules/page/page.mjs"
 
-async function onSubmit(e) {
+async function submitHandler(e, method, id = null) {
 
     e.preventDefault();
 
     const form = e.target;
-
     const formData = new FormData(form);
     const body = Object.fromEntries(formData);
 
-    try {
+    if (method == 'POST') {
 
-        const response = await methods.POST(pathsEnum.monuments, body);
-        const firebase_id = await response.json();
-        attach_firebase_id(firebase_id.name);
-    }
-    catch (err) {
+        try {
 
-        alert(err);
-        throw err;
+            const response = await methods[method](pathsEnum.monuments, body);
+            const firebase_id = await response.json();
+            attach_firebase_id(firebase_id.name);
+        }
+        catch (err) {
+
+            alert(err);
+            throw err;
+        }
+        finally {
+            form.reset();
+        }
+
     }
-    finally {
-        form.reset();
+    else if (method == 'PATCH') {
+
+        try {
+            await methods[method](`${pathsEnum.monuments}/${id}`, body);
+            alert('Записът е обновен!');
+        }
+        catch (err) {
+
+            alert(err);
+        }
+        finally {
+            page.redirect(`/${pathsEnum.monuments}/${id}`);
+            // history.replaceState(history.state, "", `/Monuments/${id}`);
+            // page.start() - old implementation
+        }
     }
 }
 
@@ -39,7 +59,7 @@ async function attach_firebase_id(firebase_id, attempts = 0) {
         let body = { 'firebase_id': firebase_id };
 
         await methods.PATCH(`${pathsEnum.monuments}/${firebase_id}`, body);
-        console.log('Firebase ID added to the product in database!');
+        alert(`Записът е добавен в базата данни! Firebase ID: ${firebase_id}`);
     }
     catch (err) {
 
@@ -49,5 +69,5 @@ async function attach_firebase_id(firebase_id, attempts = 0) {
     }
 }
 
-export { onSubmit }
+export { submitHandler }
 
