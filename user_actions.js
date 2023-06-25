@@ -1,6 +1,5 @@
 import {  pathsEnum, methodsEnum as methods} from "./api.js"
-
-
+import page from "./node_modules/page/page.mjs"
 
 async function deleteEntry(context){
 
@@ -10,8 +9,7 @@ async function deleteEntry(context){
 
     alert('Записът беше изтрит успешно от базата данни!');
 
-    window.location.href= "/monuments"
-
+    page.redirect("/Monuments")
 }
 
 async function getMonument(firebase_id) {
@@ -29,7 +27,5 @@ async function getMonuments() {
 
     return Object.values(result);
 }
-
-
 
 export {deleteEntry, getMonument, getMonuments}
