@@ -17,15 +17,6 @@ const monumentsTemplate = (monument) => html`<div class="container">
   <h2 class="font-weight-normal text-6 mb-2 sfont">${monument.monumentName}</h2>
 </div>
 
-<div class="col-lg-2 small">
-<a href="https://tituli.epistone.net/epi/view_ins/TTL2_0004"><b> &lt;&lt; Предишна</b><br>Посвещение за Херкулес от бенефициария Гай Метий Сабин</a> 
-</div>
-
-<div class="col-lg-2 small">
-<a href="https://tituli.epistone.net/epi/view_ins/TTL2_0006"><b>  Следваща &gt;&gt;</b><br>Граничен стълб на Анций Руфин от с. Хотница</a>   </div>
-    
-</div>
-
 <div class="row mt-3">      
 <div class="col-lg-12 mt-3">
   <h5 class="text-5 mb-3 pb-2 sfont bb">Паметник TTL2_0005</h5>
