@@ -47,6 +47,32 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="map">Място на намиране:</label>
+                                <input type="text" id="place" name="place" placeholder="Място на намиране" class="form-control" value="${monument == null? "" : monument.place}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="military">Войска:</label>
+                                <select type="text" id="military" name="military" class="form-select" value="${monument == null? "" : monument.military}">
+                                    
+                                    ${monument == null? '' : html`<option selected>${monument.military}</option>`}
+                                    <option>Not specified</option>
+                                    <option>Legiones</option>
+                                    <option>Auxilia</option>
+                                    <option>Cohortes Praetoria</option>
+                                    <option>Classis</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
                   
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -129,35 +155,7 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         
 
                     </div>
-                     
-                    <div class="row mb-3 mt-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="military">Войска:</label>
-                                <select type="text" id="military" name="military" class="form-select" value="${monument == null? "" : monument.military}">
-                                    
-                                    ${monument == null? '' : html`<option selected>${monument.military}</option>`}
-                                    <option>Not specified</option>
-                                    <option>Legiones</option>
-                                    <option>Auxilia</option>
-                                    <option>Cohortes Praetoria</option>
-                                    <option>Classis</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="map">Място на намиране:</label>
-                                <input type="text" id="place" name="place" placeholder="Място на намиране" class="form-control" value="${monument == null? "" : monument.place}">
-                            </div>
-                        </div>
-
-                        
-
-                    </div>
-
+                  
                     <button type="submit" class="btn btn-primary mt-4 position-relative top-100 start-50 translate-middle">Submit</button>
                 </form>
             </div>

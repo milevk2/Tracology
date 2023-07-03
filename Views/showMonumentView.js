@@ -30,7 +30,12 @@ const monumentsTemplate = (monument) => html`<div class="container">
                   <div class="col-lg-4  d-flex align-items-center"><strong>Вид паметник</strong></div>
                   <div class="col-lg-8">${monument.type}</div>                   
               </div>
- 
+
+              <div class="row  bbl m-1 p-1">
+                 <div class="col-lg-4  d-flex align-items-center"><strong>Място на намиране</strong></div>
+                 <div class="col-lg-8">${monument.place}</div>
+               </div>
+
               <div class="row  bbl m-1 p-1">
                   <div class="col-lg-4  d-flex align-items-center"><strong>Описание</strong></div>
                   <div class="col-lg-8">${monument.shortInfo}</div>      
@@ -70,16 +75,13 @@ const monumentsTemplate = (monument) => html`<div class="container">
 
               <div class="row  bbl m-1 p-1">
                   <div class="col-lg-4  d-flex align-items-center">
-                      <strong>Исторически коментар</strong>
+                      <strong>Коментар</strong>
                   </div>
                   <div class="col-lg-8">                                
-                      Разработва се</div>
+                      ${monument.historical_comment}</div>
               </div> 
 
-              <div class="row  bbl m-1 p-1">
-                  <div class="col-lg-4  d-flex align-items-center"><strong>Място на намиране</strong></div>
-                  <div class="col-lg-8">${monument.place}</div>
-              </div>
+              
 
               <div class="row  bbl m-1 p-1">
                   <div class="col-lg-4  d-flex align-items-center"><strong>Библиография</strong></div>
