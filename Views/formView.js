@@ -39,8 +39,9 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                                 <label for="type">Вид паметник:</label>
                                 <select type="text" id="type" name="type" class="form-select" value="${monument == null? "" : monument.type}">
                                 ${monument == null? '' : html`<option selected>${monument.type}</option>`}
-                                <option>Funerary stele</option>
-                                <option>Military diploma</option>
+                                <option>Надгробен паметник</option>
+                                <option>Военна диплома</option>
+                                <option>Посветителен надпис</option>
                                 </select>
                                 
                             </div>
@@ -103,8 +104,8 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="historical_comment">Исторически коментар:</label>
-                                <input type="text" id="historical_comment" name="historical_comment" placeholder="Исторически коментар - изяснява се" class="form-control" disabled>
+                             <label for="historical_comment">Коментар:</label>
+                             <input type="text" id="historical_comment" name="historical_comment" placeholder="Коментар" class="form-control">
                             </div>
                         </div>
 
@@ -125,6 +126,7 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                                 <input type="text" id="map" name="map" placeholder="Google Iframe link" class="form-control" value="${monument == null? "" : monument.map}">
                             </div>
                         </div>
+                        
 
                     </div>
                      
@@ -144,6 +146,16 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="map">Място на намиране:</label>
+                                <input type="text" id="place" name="place" placeholder="Място на намиране" class="form-control" value="${monument == null? "" : monument.place}">
+                            </div>
+                        </div>
+
+                        
+
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-4 position-relative top-100 start-50 translate-middle">Submit</button>
@@ -152,90 +164,3 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
        
 
     </body>`
-
-
-
-const aa = (submitHandler, monument=null, method, firebase_id) => html`<div class="container mt-5 border border-secondary rounded">
-<form @submit="${(e)=> submitHandler(e, method, firebase_id)}">
-    <div class="row mb-3 mt-3">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="monumentName">Име на паметник:</label>
-                <input type="text" id="monumentName" name="monumentName" value="${monument == null? "" : monument.monumentName}" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="type">Вид паметник:</label>
-                <input type="text" id="type" name="type" value="${monument == null? "" : monument.type}" class="form-control">
-            </div>
-        </div>
-    </div>
-  
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="shortInfo">Кратко описание:</label>
-                <input type="text" id="shortInfo" name="shortInfo" value="${monument == null? "" : monument.shortInfo}" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="dating">Датировка:</label>
-                <input type="text" id="dating" name="dating" value="${monument == null? "" : monument.dating}" class="form-control">
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="military_rank">Военно звание:</label>
-                <input type="text" id="military_rank" name="military_rank" value="${monument == null? "" : monument.military_rank}" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="military_division">Военна част:</label>
-                <input type="text" id="military_division" name="military_division" value="${monument == null? "" : monument.military_division}" class="form-control">
-            </div>
-        </div>
-    </div>
-    
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="origin">Произход:</label>
-                <input type="text" id="origin" name="origin" value="${monument == null? "" : monument.origin}" class="form-control">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="bibliography">Библиография:</label>
-                <input type="text" id="bibliography" name="bibliography" value="${monument == null? "" : monument.bibliography}" class="form-control">
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="img">Снимка (path):</label>
-                <input type="text" id="img" name="img" placeholder="e.g. ./image.img" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="historical_comment">Исторически коментар:</label>
-                <input type="text" id="historical_comment" name="historical_comment" placeholder="Исторически коментар - изяснява се" class="form-control" disabled="">
-            </div>
-        </div>
-
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-4 position-relative top-100 start-50 translate-middle">Submit</button>
-</form>
-</div>`
-
