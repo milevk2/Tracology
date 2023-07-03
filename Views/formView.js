@@ -3,14 +3,14 @@ import { submitHandler } from "../crud.js";
 import { getMonument } from "../user_actions.js";
 import { removeProjectInfo } from "../utility.js";
 
-export async function loadFormView(context){
+async function loadFormView(context) {
 
     removeProjectInfo();
 
     let method = null;
-    let monument = null; 
+    let monument = null;
 
-    if (context.params.id == undefined){
+    if (context.params.id == undefined) {
 
         method = 'POST';
         render(formTemplate(submitHandler, monument, method), document.querySelector('#main'));
@@ -24,21 +24,23 @@ export async function loadFormView(context){
     }
 }
 
-const formTemplate = (submitHandler, monument=null, method, firebase_id) => html`
+export { loadFormView }
+
+const formTemplate = (submitHandler, monument = null, method, firebase_id) => html`
             <div class="container mt-5 border border-secondary rounded ">
-                <form @submit="${(e)=> submitHandler(e, method, firebase_id)}">
+                <form @submit="${(e) => submitHandler(e, method, firebase_id)}">
                     <div class="row mb-3 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="monumentName">Име на паметник:</label>
-                                <input type="text" id="monumentName" name="monumentName" placeholder="Име на паметник" value="${monument == null? "" : monument.monumentName}" class="form-control">
+                                <input type="text" id="monumentName" name="monumentName" placeholder="Име на паметник" value="${monument == null ? "" : monument.monumentName}" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="type">Вид паметник:</label>
-                                <select type="text" id="type" name="type" class="form-select" value="${monument == null? "" : monument.type}">
-                                ${monument == null? '' : html`<option selected>${monument.type}</option>`}
+                                <select type="text" id="type" name="type" class="form-select" value="${monument == null ? "" : monument.type}">
+                                ${monument == null ? '' : html`<option selected>${monument.type}</option>`}
                                 <option>Надгробен паметник</option>
                                 <option>Военна диплома</option>
                                 <option>Посветителен надпис</option>
@@ -52,16 +54,16 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="map">Място на намиране:</label>
-                                <input type="text" id="place" name="place" placeholder="Място на намиране" class="form-control" value="${monument == null? "" : monument.place}">
+                                <input type="text" id="place" name="place" placeholder="Място на намиране" class="form-control" value="${monument == null ? "" : monument.place}">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="military">Войска:</label>
-                                <select type="text" id="military" name="military" class="form-select" value="${monument == null? "" : monument.military}">
+                                <select type="text" id="military" name="military" class="form-select" value="${monument == null ? "" : monument.military}">
                                     
-                                    ${monument == null? '' : html`<option selected>${monument.military}</option>`}
+                                    ${monument == null ? '' : html`<option selected>${monument.military}</option>`}
                                     <option>Not specified</option>
                                     <option>Legiones</option>
                                     <option>Auxilia</option>
@@ -78,13 +80,13 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="shortInfo">Кратко описание:</label>
-                                <input type="text" id="shortInfo" name="shortInfo" placeholder="Кратко описание" class="form-control" value="${monument == null? "" : monument.shortInfo}">
+                                <input type="text" id="shortInfo" name="shortInfo" placeholder="Кратко описание" class="form-control" value="${monument == null ? "" : monument.shortInfo}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="dating">Датировка:</label>
-                                <input type="text" id="dating" name="dating" placeholder="Датировка" class="form-control" value="${monument == null? "" : monument.dating}">
+                                <input type="text" id="dating" name="dating" placeholder="Датировка" class="form-control" value="${monument == null ? "" : monument.dating}">
                             </div>
                         </div>
                     </div>
@@ -93,13 +95,13 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="military_rank">Военно звание:</label>
-                                <input type="text" id="military_rank" name="military_rank" placeholder="Редник" class="form-control" value="${monument == null? "" : monument.military_rank}">
+                                <input type="text" id="military_rank" name="military_rank" placeholder="Редник" class="form-control" value="${monument == null ? "" : monument.military_rank}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="military_division">Военна част:</label>
-                                <input type="text" id="military_division" name="military_division" placeholder="Военна част" class="form-control" value="${monument == null? "" : monument.military_division}">
+                                <input type="text" id="military_division" name="military_division" placeholder="Военна част" class="form-control" value="${monument == null ? "" : monument.military_division}">
                             </div>
                         </div>
                     </div>
@@ -108,13 +110,13 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="origin">Произход:</label>
-                                <input type="text" id="origin" name="origin" placeholder="Произход" class="form-control" value="${monument == null? "" : monument.origin}">
+                                <input type="text" id="origin" name="origin" placeholder="Произход" class="form-control" value="${monument == null ? "" : monument.origin}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="bibliography">Библиография:</label>
-                                <input type="text" id="bibliography" name="bibliography" placeholder="Библиография" class="form-control" value="${monument == null? "" : monument.bibliography}">
+                                <input type="text" id="bibliography" name="bibliography" placeholder="Библиография" class="form-control" value="${monument == null ? "" : monument.bibliography}">
                             </div>
                         </div>
                     </div>
@@ -124,7 +126,7 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="img">Снимка (path):</label>
-                                <input type="text" id="img" name="img" placeholder="e.g. ./Images/ImageName.jpg" class="form-control" value="${monument == null? "" : monument.img}">
+                                <input type="text" id="img" name="img" placeholder="e.g. ./Images/ImageName.jpg" class="form-control" value="${monument == null ? "" : monument.img}">
                             </div>
                         </div>
 
@@ -142,14 +144,14 @@ const formTemplate = (submitHandler, monument=null, method, firebase_id) => html
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="text">Текст:</label>
-                                <input type="text" id="text" name="text" placeholder="Текст" class="form-control" value="${monument == null? "" : monument.text}">
+                                <input type="text" id="text" name="text" placeholder="Текст" class="form-control" value="${monument == null ? "" : monument.text}">
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="map">Google Map:</label>
-                                <input type="text" id="map" name="map" placeholder="Google Iframe link" class="form-control" value="${monument == null? "" : monument.map}">
+                                <input type="text" id="map" name="map" placeholder="Google Iframe link" class="form-control" value="${monument == null ? "" : monument.map}">
                             </div>
                         </div>
                         

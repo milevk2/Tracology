@@ -8,14 +8,15 @@ async function submitHandler(e, method, id = null) {
     const form = e.target;
     const formData = new FormData(form);
     const body = Object.fromEntries(formData);
+    const path = body.military;
 
     if (method == 'POST') {
 
         try {
 
-            const response = await methods[method](pathsEnum.monuments, body);
+            const response = await methods[method](path, body);
             const firebase_id = await response.json();
-            attach_firebase_id(firebase_id.name);
+            attach_firebase_id(firebase_id.name, path);
         }
         catch (err) {
 
@@ -30,7 +31,7 @@ async function submitHandler(e, method, id = null) {
     else if (method == 'PATCH') {
 
         try {
-            await methods[method](`${pathsEnum.monuments}/${id}`, body);
+            await methods[method](`${path}/${id}`, body);
             alert('Записът е обновен!');
         }
         catch (err) {
@@ -38,27 +39,27 @@ async function submitHandler(e, method, id = null) {
             alert(err);
         }
         finally {
-            page.redirect(`/${pathsEnum.monuments}/${id}`);
+            page.redirect(`/${path}/${id}`);
             // history.replaceState(history.state, "", `/Monuments/${id}`);
             // page.start() - old implementation
         }
     }
 }
 
-async function attach_firebase_id(firebase_id, attempts = 0) {
+async function attach_firebase_id(firebase_id, path, attempts = 0) {
 
     const limit = 5;
 
     if (attempts == limit) {
 
-        await methods.DELETE(`${pathsEnum.monuments}/${firebase_id}`);
+        await methods.DELETE(`${path}/${firebase_id}`);
         return alert(`Unable to update firebase id after ${limit} attempts!`);
     }
 
     try {
         let body = { 'firebase_id': firebase_id };
 
-        await methods.PATCH(`${pathsEnum.monuments}/${firebase_id}`, body);
+        await methods.PATCH(`${path}/${firebase_id}`, body);
         alert(`Записът е добавен в базата данни! Firebase ID: ${firebase_id}`);
     }
     catch (err) {

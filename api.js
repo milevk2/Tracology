@@ -41,7 +41,7 @@ const methodsEnum = {
     PATCH: patch
 }
 
-function get(url) {
+function get(url='') {
 
     const headerData = {};
     if (localStorage.getItem('userData')) {

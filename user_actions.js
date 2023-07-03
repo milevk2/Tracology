@@ -20,9 +20,9 @@ async function getMonument(firebase_id) {
     return result ;
 }
 
-async function getMonuments() {
+async function getMonuments(url='') {
 
-    const response = await methods.GET(pathsEnum.monuments);
+    const response = await methods.GET(url);
     const result = await response.json();
 
     return Object.values(result);

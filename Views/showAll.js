@@ -3,15 +3,26 @@ import { render, html } from "../node_modules/lit-html/lit-html.js"
 import { getMonuments } from "../user_actions.js";
 import { removeProjectInfo } from "../utility.js";
 
-pathsEnum
-async function showAllView() {
+
+async function showAllView(context) {
 
   removeProjectInfo();
-  const monumentsArray = await getMonuments();
-  render(showAll(monumentsArray), document.querySelector('#main'));
+
+  //the below lines of code must be refactored;
+
+  if (context.path == '/Monuments') {
+
+    const response = [...Object.values(await getMonuments())];
+    const monumentsArray = [];
+    response.forEach(x => monumentsArray.push(...Object.values(x)));
+    render(showAll(monumentsArray), document.querySelector('#main'));
+  }
+  else {
+
+    const monumentsArray = await getMonuments(context.path);
+    render(showAll(monumentsArray), document.querySelector('#main'));
+  }
 }
-
-
 
 const showAll = (monuments) => html`
 <div class="wrapper">
