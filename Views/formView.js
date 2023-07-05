@@ -17,8 +17,10 @@ async function loadFormView(context) {
     }
     else {
 
-        const firebase_id = context.params.id;
-        monument = await getMonument(firebase_id);
+        const resource = context.path.slice(6);
+        monument = await getMonument(resource);
+        const firebase_id = context.params.id ;
+
         method = 'PATCH';
         render(formTemplate(submitHandler, monument, method, firebase_id), document.querySelector('#main'));
     }
@@ -61,16 +63,21 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="military">Войска:</label>
-                                <select type="text" id="military" name="military" class="form-select" value="${monument == null ? "" : monument.military}">
+
+                                ${monument == null ? html`<select type="text" id="military" name="military" class="form-select">
+                                
+                                <option>Not Specified</option>
+                                <option>Legiones</option>
+                                <option>Auxilia</option>
+                                <option>Cohortes Praetoria</option>
+                                <option>Classis</option>
+                                </select>`
+                                 :
+                                 html`<select type="text" id="military" name="military" class="form-select" disabled>
+
+                                 <option selected>${monument.military}</option>
                                     
-                                    ${monument == null ? '' : html`<option selected>${monument.military}</option>`}
-                                    <option>Not specified</option>
-                                    <option>Legiones</option>
-                                    <option>Auxilia</option>
-                                    <option>Cohortes Praetoria</option>
-                                    <option>Classis</option>
-                                    
-                                </select>
+                                </select>`}
                             </div>
                         </div>
 

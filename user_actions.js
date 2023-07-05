@@ -1,31 +1,37 @@
-import {  pathsEnum, methodsEnum as methods} from "./api.js"
+import { pathsEnum, methodsEnum as methods } from "./api.js"
 import page from "./node_modules/page/page.mjs"
 
-async function deleteEntry(context){
+async function deleteEntry(context) {
 
-    const firebase_id = context.params.id;
+    let resource = context.path.slice(7);  // removes /delete from path
+        
+    if (!window.confirm('Моля потвърдете, че искате да изтриете записа')) {
 
-    await methods.DELETE(`${pathsEnum.monuments}/${firebase_id}`);
+        return page.redirect(resource);
+    }
+
+    await methods.DELETE(resource);
 
     alert('Записът беше изтрит успешно от базата данни!');
 
     page.redirect("/Monuments")
 }
 
-async function getMonument(firebase_id) {
+async function getMonument(resource) {
 
-    const response = await methods.GET(`${pathsEnum.monuments}/${firebase_id}`);
+    const response = await methods.GET(resource);
     const result = await response.json();
 
-    return result ;
+    return result;
 }
 
-async function getMonuments(url='') {
+async function getMonuments(url = '') {
 
     const response = await methods.GET(url);
     const result = await response.json();
 
     return Object.values(result);
+
 }
 
-export {deleteEntry, getMonument, getMonuments}
+export { deleteEntry, getMonument, getMonuments }

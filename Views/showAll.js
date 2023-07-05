@@ -2,7 +2,7 @@ import { pathsEnum } from "../api.js";
 import { render, html } from "../node_modules/lit-html/lit-html.js"
 import { getMonuments } from "../user_actions.js";
 import { removeProjectInfo } from "../utility.js";
-
+import page from "../node_modules/page/page.mjs"
 
 async function showAllView(context) {
 
@@ -19,14 +19,22 @@ async function showAllView(context) {
   }
   else {
 
-    const monumentsArray = await getMonuments(context.path);
-    render(showAll(monumentsArray), document.querySelector('#main'));
+    try {
+      const monumentsArray = await getMonuments(context.path);
+      render(showAll(monumentsArray), document.querySelector('#main'));
+    }
+    catch (err) {
+
+      alert('Няма налични записи!')
+      window.location.href='/index.html'
+    }
+
   }
 }
 
 const showAll = (monuments) => html`
 <div class="wrapper">
-${monuments.map(monument => html`<a href="${pathsEnum.monuments}/${monument.firebase_id}" class="links">
+${monuments.map(monument => html`<a href="${monument.military}/${monument.firebase_id}" class="links">
 <div class="card m-4 links" >
     <div class="row g-0">
         <div class="col-md-4">

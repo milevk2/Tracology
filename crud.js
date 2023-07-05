@@ -5,11 +5,13 @@ async function submitHandler(e, method, id = null) {
 
     e.preventDefault();
 
+    document.getElementById('military').disabled = false;
     const form = e.target;
     const formData = new FormData(form);
     const body = Object.fromEntries(formData);
     const path = body.military;
 
+    console.log(body);
     if (method == 'POST') {
 
         try {

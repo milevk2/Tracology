@@ -3,9 +3,7 @@ import { getMonument } from "../user_actions.js";
 
 
 async function showMonumentView(context) {
-
-    let firebase_id = context.params.id;
-    const monument = await getMonument(firebase_id);
+    const monument = await getMonument(context.path);
     render(monumentsTemplate(monument), document.querySelector('#main'));
 }
 
@@ -19,9 +17,7 @@ const monumentsTemplate = (monument) => html`<div class="container">
 
 <div class="row mt-3">      
 <div class="col-lg-12 mt-3">
-  <h5 class="text-5 mb-3 pb-2 sfont bb">Паметник TTL2_0005</h5>
   
-
       <div class="row">
           <div class="col-lg-12 ">
               
@@ -46,6 +42,11 @@ const monumentsTemplate = (monument) => html`<div class="container">
                   <div class="col-lg-8">
                      ${monument.text}</div>
               </div>             
+                
+                <div class="row  bbl m-1 p-1">
+                    <div class="col-lg-4  d-flex align-items-center"><strong>Войска</strong></div>
+                    <div class="col-lg-8">${monument.military}</div>
+                 </div>
 
                 <div class="row  bbl m-1 p-1">
                   <div class="col-lg-4  d-flex align-items-center"><strong>Военно звание</strong></div>
@@ -96,24 +97,14 @@ const monumentsTemplate = (monument) => html`<div class="container">
 
               <div class="row  bbl m-1 p-1 align-items-center" >
                 <div class="col centered">
-                <a href="/edit/Monuments/${monument.firebase_id}" class="btn btn-primary m-1 mt-4 w-25">Edit</a>
-                <a href="/delete/Monuments/${monument.firebase_id}" class="btn btn-secondary m-1 mt-4 w-25">Delete</a>
+                <a href="/edit/${monument.military}/${monument.firebase_id}" class="btn btn-primary m-1 mt-4 w-25">Edit</a>
+                <a href="/delete/${monument.military}/${monument.firebase_id}" class="btn btn-secondary m-1 mt-4 w-25">Delete</a>
               </div>
               </div>
           </div>
   </div>
 </div>
 </div>
-
-<div class="col-lg-10 pl-3">  
-                        <h5>Място на намиране <seg xml:lang="bg"> 
-                                <placename type="ancientFindspot" ref="findsp.xml#Dermantsi">Дерманци</placename><!-- съвременно име -->
-                            </seg></h5>                                   
-                        <div class="content" id="Google" data-section-content="data-section-content">
-                       
-                        </div>
-                    </div>
-
 `
 
 export { showMonumentView }
