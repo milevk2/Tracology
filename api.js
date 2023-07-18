@@ -29,7 +29,12 @@ export async function request(method, url, headerData = {}, body = null) {
 
 const pathsEnum = {
 
-    monuments: 'Monuments'
+    monuments: 'Monuments',
+    auxilia: '/Auxilia',
+    legiones: '/Legiones',
+    not_specified: '/Not Specified',
+    cohortes_praetoria: '/Cohortes Praetoria',
+    classis: '/Classis'
 }
 
 const methodsEnum = {
@@ -86,5 +91,5 @@ function patch(url, body) {
 
 export {
 
-    get, post, put, del, patch, pathsEnum, methodsEnum
+    get, post, put, del, patch, pathsEnum, methodsEnum, main
 }
