@@ -3,10 +3,11 @@ import { deleteEntry } from "./user_actions.js"
 import { showAllView } from "./Views/showAll.js"
 import { showMonumentView } from "./Views/showMonumentView.js"
 import { loadFormView } from "./Views/formView.js"
-import { showTagView } from "./Views/tagView.js"
+import { tagsView } from "./Views/tagView.js"
+import { onHomeLoad } from "./Views/home.js"
 
 
-page('/Tags', showTagView)
+page('/', onHomeLoad)
 page('/Monuments', showAllView)
 page('/Legiones', showAllView)
 page('/Auxilia', showAllView)
@@ -16,6 +17,7 @@ page('/Not Specified', showAllView)
 page('/Надгробни паметници', showAllView)
 page('/Посветителни надписи', showAllView)
 page('/Военни дипломи', showAllView)
+page('/Tags/:id', tagsView)
 
 page('/Monuments/:id', showMonumentView)
 page('/Legiones/:id', showMonumentView)
