@@ -1,17 +1,9 @@
-import { pathsEnum, methodsEnum as methods } from "./api.js";
+import { methodsEnum as methods } from "./api.js";
 import page from "./node_modules/page/page.mjs"
 
-async function submitHandler(e, method, id = null) {
-
-    e.preventDefault();
-
-    document.getElementById('military').disabled = false;
-    const form = e.target;
-    const formData = new FormData(form);
-    const body = Object.fromEntries(formData);
+async function requestHandler(form, body, method, id) {
+   
     const path = body.military;
-
-    console.log(body);
     if (method == 'POST') {
 
         try {
@@ -48,6 +40,7 @@ async function submitHandler(e, method, id = null) {
     }
 }
 
+
 async function attach_firebase_id(firebase_id, path, attempts = 0) {
 
     const limit = 5;
@@ -72,5 +65,5 @@ async function attach_firebase_id(firebase_id, path, attempts = 0) {
     }
 }
 
-export { submitHandler }
+export { requestHandler }
 

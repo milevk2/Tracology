@@ -12,15 +12,15 @@
 
     width: 75%;
 
-
 }
 
-#main h2 {
+.underlined {
 
     border-bottom: 1px solid;
     border-color: teal;
     width: 75%;
     padding-bottom: 3px;
+
 }
 
 .wrapper {
@@ -28,22 +28,12 @@
     margin-left: 25px;
 }
 
-.projectInfo {
-
-    margin: 2%;
-
-
-}
-
-
 .menu {
 
     display: flex;
     justify-content: space-around;
     background-color: rgb(22, 86, 105);
 }
-
-
 
 .banner {
 

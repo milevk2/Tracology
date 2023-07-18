@@ -1,20 +1,16 @@
-import { pathsEnum } from "../api.js";
 import { render, html } from "../node_modules/lit-html/lit-html.js"
 import { getMonuments } from "../user_actions.js";
-import { removeProjectInfo } from "../utility.js";
-import page from "../node_modules/page/page.mjs"
+import { checkForCacheAndGetData, removeProjectInfo } from "../utility.js";
+
 
 async function showAllView(context) {
 
   removeProjectInfo();
-
-  //the below lines of code must be refactored;
-
+  
   if (context.path == '/Monuments') {
-
-    const response = [...Object.values(await getMonuments())];
-    const monumentsArray = [];
-    response.forEach(x => monumentsArray.push(...Object.values(x)));
+    
+    await checkForCacheAndGetData();
+    let monumentsArray = JSON.parse(sessionStorage.getItem('cache'));
     render(showAll(monumentsArray), document.querySelector('#main'));
   }
   else {
@@ -26,9 +22,8 @@ async function showAllView(context) {
     catch (err) {
 
       alert('Няма налични записи!')
-      window.location.href='/index.html'
+      window.location.href = '/index.html'
     }
-
   }
 }
 

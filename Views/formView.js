@@ -1,5 +1,5 @@
 import { render, html } from "../node_modules/lit-html/lit-html.js"
-import { submitHandler } from "../crud.js";
+import { submitHandler } from "../submitLogic.js";
 import { getMonument } from "../user_actions.js";
 import { removeProjectInfo } from "../utility.js";
 
@@ -16,11 +16,9 @@ async function loadFormView(context) {
         render(formTemplate(submitHandler, monument, method), document.querySelector('#main'));
     }
     else {
-
-        const resource = context.path.slice(6);
+        const resource = context.path.slice(5);
         monument = await getMonument(resource);
         const firebase_id = context.params.id ;
-
         method = 'PATCH';
         render(formTemplate(submitHandler, monument, method, firebase_id), document.querySelector('#main'));
     }
@@ -70,12 +68,12 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                                 <option>Legiones</option>
                                 <option>Auxilia</option>
                                 <option>Cohortes Praetoria</option>
-                                <option>Classis</option>
+                                <option>Classis</option>                                
                                 </select>`
                                  :
                                  html`<select type="text" id="military" name="military" class="form-select" disabled>
 
-                                 <option selected>${monument.military}</option>
+                                 <option value="${monument.military}" selected >${monument.military.split('_').join(' ')}</option>
                                     
                                 </select>`}
                             </div>

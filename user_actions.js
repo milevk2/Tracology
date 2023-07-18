@@ -1,4 +1,4 @@
-import { pathsEnum, methodsEnum as methods } from "./api.js"
+import { methodsEnum as methods } from "./api.js"
 import page from "./node_modules/page/page.mjs"
 
 async function deleteEntry(context) {
