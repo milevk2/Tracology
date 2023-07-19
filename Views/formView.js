@@ -73,7 +73,7 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                                  :
                                  html`<select type="text" id="military" name="military" class="form-select" disabled>
 
-                                 <option value="${monument.military}" selected >${monument.military.split('_').join(' ')}</option>
+                                 <option value="${monument.military}" selected >${monument.military}</option>
                                     
                                 </select>`}
                             </div>
@@ -159,8 +159,16 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                                 <input type="text" id="map" name="map" placeholder="Google Iframe link" class="form-control" value="${monument == null ? "" : monument.map}">
                             </div>
                         </div>
-                        
+                    </div>
 
+                    <div class="row mb-3">
+                                
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emperor_mentioned">Име на споменат император:</label>
+                                <input type="text" id="emperor_mentioned" name="emperor_mentioned" placeholder="Име на император" class="form-control" value="${monument == null ? "" : monument.emperor_mentioned}">
+                            </div>
+                        </div>
                     </div>
                   
                     <button type="submit" class="btn btn-primary mt-4 position-relative top-100 start-50 translate-middle">Submit</button>
