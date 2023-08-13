@@ -3,15 +3,9 @@ import { getMonuments } from "./user_actions.js";
 function removeProjectInfo() {
 
     if (document.getElementById('projectInfo') !== null) document.getElementById('projectInfo').remove();
-
 }
 
-function searchHandler(e, body) {
-
-    console.log(e.target,'This is a search handler!');
-}
-
-async function checkForCacheAndGetData(){
+async function checkForCacheAndGetData() {
 
     if (sessionStorage.getItem('cache') != null) return console.log('Data present!');
     console.log('Caching data...');
@@ -33,4 +27,4 @@ async function checkForCacheAndGetData(){
 
 }
 
-export {removeProjectInfo, searchHandler, checkForCacheAndGetData}
+export { removeProjectInfo, searchHandler, checkForCacheAndGetData }

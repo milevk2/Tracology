@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: start;
     flex-direction: column;
-    height: 1000px;
+    height: fit-content;
     /* background-image: url("ginina_mogila.jpg"); */
     background-color: whitesmoke;
 }
@@ -79,5 +79,18 @@
 
 transform: scale(1.01);
 border-color: gray;
+
+}
+
+.hidden {
+
+    display: none;
+
+}
+
+#searchResults{
+
+    color: rgb(22, 86, 105);
+    font-weight: bold;
 
 }
