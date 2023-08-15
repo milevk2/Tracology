@@ -5,7 +5,7 @@ function removeProjectInfo() {
     if (document.getElementById('projectInfo') !== null) document.getElementById('projectInfo').remove();
 }
 
-async function checkForCacheAndGetData() {
+async function checkForCacheAndGetData() { //remove cache for admin
 
     if (sessionStorage.getItem('cache') != null) return console.log('Data present!');
     console.log('Caching data...');
@@ -17,8 +17,8 @@ async function checkForCacheAndGetData() {
 
         concatenatedArr.push(...arr);
     }
-    sessionStorage.setItem('cache', JSON.stringify(concatenatedArr));
-    return console.log('Data stored!');
+   // sessionStorage.setItem('cache', JSON.stringify(concatenatedArr)); disabled until there is different implementations for respectively user and admin
+    return concatenatedArr//console.log('Data stored!');
 
     //old implementation:
     // const response = [...Object.values(await getMonuments())];
@@ -27,4 +27,4 @@ async function checkForCacheAndGetData() {
 
 }
 
-export { removeProjectInfo, searchHandler, checkForCacheAndGetData }
+export { removeProjectInfo, checkForCacheAndGetData }

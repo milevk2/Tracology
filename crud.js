@@ -4,6 +4,8 @@ import page from "./node_modules/page/page.mjs"
 async function requestHandler(form, body, method, id) {
    
     const path = body.military;
+    const mentioned_emperor = body.type;
+
     if (method == 'POST') {
 
         try {
@@ -11,6 +13,10 @@ async function requestHandler(form, body, method, id) {
             const response = await methods[method](path, body);
             const firebase_id = await response.json();
             attach_firebase_id(firebase_id.name, path);
+            
+           
+            emperorRelationship(`${path}/${firebase_id.name}`, mentioned_emperor)
+            
         }
         catch (err) {
 
@@ -40,6 +46,17 @@ async function requestHandler(form, body, method, id) {
     }
 }
 
+async function emperorRelationship(path, mentioned_emperor) {
+
+    if(mentioned_emperor == null) return;
+    if(mentioned_emperor == 'Not applicable') return;
+
+    const body = {link: path};
+
+    const response = await methods.POST(`/Emperors/${mentioned_emperor}`, body);
+    
+
+}
 
 async function attach_firebase_id(firebase_id, path, attempts = 0) {
 

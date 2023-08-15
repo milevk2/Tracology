@@ -1,5 +1,4 @@
 import { requestHandler } from "./crud.js";
-import { searchHandler } from "./utility.js";
 
 
 async function submitHandler(e, method = null, id = null) {

@@ -3,7 +3,9 @@ import { getMonument } from "../user_actions.js";
 
 
 async function showMonumentView(context) {
+
     const monument = await getMonument(context.path);
+    
     render(monumentsTemplate(monument), document.querySelector('#main'));
 }
 

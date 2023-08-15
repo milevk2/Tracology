@@ -5,6 +5,7 @@ import { showMonumentView } from "./Views/showMonumentView.js"
 import { loadFormView } from "./Views/formView.js"
 import { tagsView } from "./Views/tagView.js"
 import { onHomeLoad } from "./Views/home.js"
+import { relatedMonumentsView } from "./Views/relatedMonumentsView.js"
 
 
 page('/', onHomeLoad)
@@ -18,6 +19,7 @@ page('/Надгробни паметници', showAllView)
 page('/Посветителни надписи', showAllView)
 page('/Военни дипломи', showAllView)
 page('/Tags/:id', tagsView)
+page('/Emperors/:emperor', showAllView)
 
 page('/Monuments/:id', showMonumentView)
 page('/Legiones/:id', showMonumentView)
