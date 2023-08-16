@@ -1,41 +1,43 @@
 import { render, html } from "../node_modules/lit-html/lit-html.js"
 import { getMonuments } from "../user_actions.js";
-import { checkForCacheAndGetData, removeProjectInfo } from "../utility.js";
+import {removeProjectInfo } from "../utility.js";
 import page from "../node_modules/page/page.mjs"
-import { methodsEnum as methods} from "../api.js";
+import { pathsEnum as paths, methodsEnum as methods } from "../api.js";
 
 
-async function showAllView(context) {
-
+async function showAllView(context) { // implement different functionality for admin / user , checkForCacheAndGetData(); should be used for the user (as users do not update db)
 
   removeProjectInfo();
 
-  if (context.path == '/Monuments') { //implement with pathEnum in order to avoid fetching unrelevant data
-
-    //await checkForCacheAndGetData();
-    let monumentsArray = await checkForCacheAndGetData();//JSON.parse(sessionStorage.getItem('cache'));
-    console.log(monumentsArray);
-    render(showAll(monumentsArray), document.querySelector('#main'));
-  }
-  else if (context.path.includes('/Emperors/')) {
-    
-    const monumentsArray = await getRelatedMonuments(context.pathname);
-    history.pushState({},'', '/');
-    render(showAll(monumentsArray), document.querySelector('#main'));
-  }
-  else {
-
+  if (context.path == '/Monuments') { // this block of code executes when we fetch all available database records
     try {
+      //await checkForCacheAndGetData();
+      let monumentsArray = await getMonuments(paths);  //JSON.parse(sessionStorage.getItem('cache'));
+      render(showAll(monumentsArray), document.querySelector('#main'));
+    } catch (err) {
+
+      alert('Няма налични записи!');
+      window.location.href = '/index.html';
+    }
+  }
+  else if (context.path.includes('/Emperors/')) { // this block of code executes when we fetch the related monuments for certain emperor e.g. /Tags/Emperors
+
+    const monumentsArray = await getRelatedMonuments(context.pathname);
+    history.pushState({}, '', '/');
+    render(showAll(monumentsArray), document.querySelector('#main'));
+  }
+  else {  // this block of code executes when we fetch the related monuments for certain certain military type e.g. /Legiones
+    try{
       const monumentsArray = await getMonuments(context.path);
       render(showAll(monumentsArray), document.querySelector('#main'));
     }
-    catch (err) {
-
-      alert('Няма налични записи!')
-      window.location.href = '/index.html'
+    catch(err){
+      alert('Няма налични записи!');
+      window.location.href = '/index.html';
     }
   }
 }
+
 
 async function getRelatedMonuments(links) {
 

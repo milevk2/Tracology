@@ -1,6 +1,5 @@
 import { requestHandler } from "./crud.js";
 
-
 async function submitHandler(e, method = null, id = null) {
 
     e.preventDefault();
@@ -13,10 +12,6 @@ async function submitHandler(e, method = null, id = null) {
     const formData = new FormData(form);
     const body = Object.fromEntries(formData);
 
-    if (method == null) {
-
-        return searchHandler(e, body);
-    }
     return requestHandler(form, body, method, id);
 }
 

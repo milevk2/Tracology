@@ -166,8 +166,7 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="emperor_mentioned">Име на споменат император:</label>
-                                <select type="text" id="type" name="type" class="form-select" value="${monument == null ? "" : monument.emperor_mentioned}">
-                                ${monument == null ? '' : html`<option selected>${monument.emperor_mentioned}</option>`}
+                                ${monument == null ? html`<select type="text" id="emperor_mentioned" name="emperor_mentioned" class="form-select" value="">
                                 <option>Not applicable</option>
                                 <option>Imperator Caesar Augustus</option>	
                                 <option>Tiberius Caesar Augustus </option>	
@@ -216,8 +215,12 @@ const formTemplate = (submitHandler, monument = null, method, firebase_id) => ht
                                 <option>Caesar Marcus Aurelius Carus Augustus</option>	
                                 <option>Caesar Marcus Aurelius Carinus Augustus</option>	
                                 <option>Caesar Gaius Aurelius Valerius Diocletianus Augustus</option>	
-                                <option>Caesar Marcus Aurelius Valerius Maximianus Augustus </option>	
+                                <option>Caesar Marcus Aurelius Valerius Maximianus Augustus </option>
+                                
                                 </select>
+                                ` : html `<select type="text" id="emperor_mentioned" name="emperor_mentioned" class="form-select" disabled>
+                                            <option selected value="${monument.emperor_mentioned}">${monument.emperor_mentioned}</option>
+                                         </select>`}
                                 </div>
                         </div>
                     </div>

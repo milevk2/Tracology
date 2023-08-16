@@ -17,8 +17,8 @@ async function checkForCacheAndGetData() { //remove cache for admin
 
         concatenatedArr.push(...arr);
     }
-   // sessionStorage.setItem('cache', JSON.stringify(concatenatedArr)); disabled until there is different implementations for respectively user and admin
-    return concatenatedArr//console.log('Data stored!');
+   // sessionStorage.setItem('cache', JSON.stringify(concatenatedArr)); disabled until there is different implementations respectively for user and admin
+    return //console.log('Data stored!');
 
     //old implementation:
     // const response = [...Object.values(await getMonuments())];
